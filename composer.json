@@ -1,0 +1,16 @@
+{
+    "name": "zero/x-shi",
+    "description": "A fun component",
+    "type": "project",
+    "require": {
+        "houdunwang/hdphp": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "740076933",
+            "email": "740076933@qq.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
