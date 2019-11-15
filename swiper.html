@@ -140,7 +140,6 @@
 				background: #292828;
 				margin: 10px;
 				text-align: center;
-				100%
 			}
 			
 			.layui-tab-brief>.layui-tab-title .layui-this {
@@ -344,14 +343,14 @@
 				<div class="layui-col-md12 center ">
 					影院详情
 				</div>
-				<span class="tltle-span">{{merc_name}}</span>
+				<span class="tltle-span" v-text="navigation.merc_name"></span>
 				<span class="tltle-evaluate">评价 &nbsp;> </span>
 
 			</div>
 			<!-- Swiper -->
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide" v-for="item in merc_image.mercImage">
+					<div class="swiper-slide" v-for="item in navigation.merc_image.mercImage">
 						<img :src="item" />
 					</div>
 				</div>
@@ -359,22 +358,18 @@
 			</div>
 			<div class="text-conter">
 				<p class="layui-search">
-					<span class="iconfont icon-dizhi"></span> {{merc_address}}
+					<span class="iconfont icon-dizhi"></span> <template v-text="navigation.merc_address"></template>
 				</p>
 				<label class="layui-lable"><span class="iconfont icon-contact"></span></label>
 			</div>
 			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
 
 				<div class="slide-box" style="padding: 0 30px;">
-					<template v-for="(item,index) in typeList" v-if="index==0">
-						<div class="slide-item" data-type="1" :data-id="item.id">
-							{{item.groupName}}
-						</div>
+					<template v-for="(item,index) in navigation.typeList" v-if="index==0">
+						<div class="slide-item" data-type="1" :data-id="item.id" v-text="item.groupName"></div>
 					</template>
 					<template v-else>
-						<div class="slide-item" data-type="1" :data-id="item.id">
-							{{item.groupName}}
-						</div>
+						<div class="slide-item" data-type="1" :data-id="item.id" v-text="item.groupName"></div>
 					</template>
 				</div>
 				<div class="text-conters">
@@ -385,42 +380,58 @@
 					<!--筛选-->
 					<label class="layui-lable slide"><span class="iconfont icon-iconfontzhizuobiaozhun023125"></span></label>
 					<div class="slide-box">
-						<div class="slide-item this" v-for="(item,index) in sortList" v-if="index==0" data-type="2" :data-sortValue="item.sortValue">
-							{{item.sortValue}}
+						<div class="slide-item this"
+								v-for="(item,index) in navigation.sortList" 
+								v-if="index==0" 
+								data-type="2" 
+								:data-sortValue="item.sortValue"
+								v-text="item.sortValue">
 						</div>
-						<div class="slide-item" v-else data-type="2" :data-sortValue="item.sortValue">
-							{{item.sortValue}}
+						<div class="slide-item" v-else data-type="2" :data-sortValue="item.sortValue" v-text="item.sortValue"></div>
+					</div>
+
+					<div class="slide-box">
+						<div class="slide-item this" 
+								v-for="(item,index) in navigation.categoryList" 
+								v-if="index==0" 
+								:data-categoryId="item.categoryId"
+								v-text="item.categoryName">
+						</div>
+						<div class="slide-item" 
+								v-else :data-categoryId="item.categoryId" 
+								:data-categoryId="item.categoryId" 
+								v-text="item.categoryName">
 						</div>
 					</div>
+
 					<div class="slide-box">
-						<div class="slide-item this" v-for="(item,index) in categoryList" v-if="index==0" :data-categoryId="item.categoryId">
-							{{item.categoryName}}
+						<div class="slide-item this"
+								v-for="(item,index) in navigation.countryList"
+								v-if="index==0"
+								:data-categoryId="item.categoryId"
+								v-text="item.categoryName">
 						</div>
-						<div class="slide-item" v-else :data-categoryId="item.categoryId" :data-categoryId="item.categoryId">
-							{{item.categoryName}}
-						</div>
+						<div class="slide-item" v-else :data-categoryId="item.categoryId" v-text="item.categoryName"></div>
 					</div>
+
 					<div class="slide-box">
-						<div class="slide-item this" v-for="(item,index) in countryList" v-if="index==0" :data-categoryId="item.categoryId">
-							{{item.categoryName}}
+						<div class="slide-item this" 
+								v-for="(item,index) in navigation.yearList" 
+								v-if="index==0"
+								:data-categoryName="item.categoryName"
+								v-text="item.categoryName">
 						</div>
-						<div class="slide-item" v-else :data-categoryId="item.categoryId">
-							{{item.categoryName}}
-						</div>
-					</div>
-					<div class="slide-box">
-						<div class="slide-item this" v-for="(item,index) in yearList" v-if="index==0" :data-categoryName="item.categoryName">
-							{{item.categoryName}}
-						</div>
-						<div class="slide-item" v-else :data-categoryName="item.categoryName">
-							{{item.categoryName}}
-						</div>
+						<div class="slide-item" v-else :data-categoryName="item.categoryName" v-text="item.categoryName"></div>
 					</div>
 				</div>
+
 				<div class="layui-tab-content" style="height: 100px;">
 					<div class="layui-tab-item layui-show">
-						<ul id="ul">
-
+						<ul v-for="item in movieList">
+							<li>
+								<img :src="item.movieLogo" alt="">
+								<p class="p-text" v-text="item.movieName"></p>
+							</li>
 						</ul>
 					</div>
 
@@ -434,191 +445,131 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/swiper.js"></script>
 		<script>
-			//			var data = {
-			//				"message": "请求成功！",
-			//				"status": "success",
-			//				"data": {
-			//					"merc_address": "陕西省西安市雁塔区瑞吉大厦",
-			//					"openStarttime": "08:00",
-			//					"mercImageCount": 11,
-			//					"sortList": [{
-			//						"sortValue": "最新",
-			//						"sortKey": "new"
-			//					}],
-			//					"openEndtime": "23:00",
-			//					"merc_image": {
-			//						"mercImage": [
-			//							"https://xiaoniao-images-test.oss-cn-beijing.aliyuncs.com/0b4a92aa-e441-4502-b48e-66292baf2cad.png",
-			//							"https://xiaoniao-images-test.oss-cn-beijing.aliyuncs.com/440fbae9-a4a0-4a9a-a927-bccca8649f97.png"
-			//						]
-			//					},
-			//					"yearList": [{
-			//						"categoryName": "全部",
-			//						"categoryId": "0"
-			//					}],
-			//					"countryList": [{
-			//						"categoryName": "全部",
-			//						"categoryId": "0"
-			//					}],
-			//					"categoryList": [{
-			//						"categoryId": "0",
-			//						"categoryName": "全部",
-			//						"pageSize": 0,
-			//						"pageStart": 0
-			//					}],
-			//					"businessCode": "00",
-			//					"businessMessage": "查询成功！",
-			//					"merc_id": "925336436335575040",
-			//					"merc_description": "",
-			//					"merc_phone": "13772541727",
-			//					"longitude": "108.90863",
-			//					"tagList": [
-			//						"4D厅"
-			//					],
-			//					"latitude": "34.241217",
-			//					"is_shelf": true,
-			//					"typeList": [{
-			//						"groupName": "全部",
-			//						"id": 0,
-			//						"movieCount": 0,
-			//						"movieName": 0,
-			//						"pageSize": 0,
-			//						"pageStart": 0,
-			//						"sort": 0
-			//					}],
-			//					"merc_name": "小鸟观映·钟楼体验店"
-			//				}
-			//			}
-			$.ajax({
-				type: "get",
-				url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovieDetail?mercId=925336436335575040&movieId=",
-				success: function(data) {
-					console.log(data)
-					new Vue({
-						el: '#app',
-						data: data.data
-					})
-				}
-			});
-
-			function ajax() {
-                //准备吧下面的遍历点击事件封装起来或者 在vue里面用
-			}
-			$(".slide-item").each(function() {
-				$(this).click(function() {
-					var num = $(this).attr("data-type")
-					if(num == '1') {
-						var categoryId = $(this).attr()
-						$.ajax({
-							type: "get",
-							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=",
-							success: function(data) {
-								console.log(data)
-								var html = ''
-								for(var i = 0; i < data.data.movieList.length; i++) {
-									html += '<li>' +
-										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
-										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
-										'</li>'
-								}
-								$('#ul').html(html)
-							}
-						});
-					} else {
-						var sortValue = $(this).attr("data-sortValue")
-						var categoryId = $(this).attr("categoryId") //3和2一样	
-						var categoryName = $(this).attr("data-categoryName")
-
-						$.ajax({
-							type: "get",
-							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue,
-							success: function(data) {
-								console.log(data)
-								var html = ''
-								for(var i = 0; i < data.data.movieList.length; i++) {
-									html += '<li>' +
-										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
-										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
-										'</li>'
-								}
-								$('#ul').html(html)
-							}
-						});
-
-					}
-				})
-			})
-			$.ajax({
-				type: "get",
-				url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=0&movieName=",
-				success: function(data) {
-					console.log(data)
-					var html = ''
-					for(var i = 0; i < data.data.movieList.length; i++) {
-						html += '<li>' +
-							'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
-							'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
-							'</li>'
-					}
-					$('#ul').html(html)
-
-				}
-			});
-			var swiper = new Swiper('.swiper-container', {
-				autoplay: true,
-				slidesPerView: 2,
-				spaceBetween: 30,
-				freeMode: true,
-				pagination: {
-					el: '.swiper-pagination',
-					clickable: true,
+			new Vue({
+				el: '#app',
+				data: {
+					navigation: [],
+					movieList: []
 				},
-			});
-			layui.use(['carousel', 'element', 'form'], function() {
-				var $ = layui.jquery,
-					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-				var carousel = layui.carousel,
-					form = layui.form;
-				//常规轮播
-				carousel.render({
-					elem: '#test1',
-					arrow: 'always',
-					width: '100%'
-				});
-				var $ = layui.$,
-					active = {
-						set: function(othis) {
-							var THIS = 'layui-bg-normal',
-								key = othis.data('key'),
-								options = {};
-							othis.css('background-color', '#5FB878').siblings().removeAttr('style');
-							options[key] = othis.data('value');
-							ins3.reload(options);
-						}
-					};
-				//监听开关
-				form.on('switch(autoplay)', function() {
-					ins3.reload({
-						autoplay: this.checked
-					});
-				});
-				$('.demoSet').on('keyup', function() {
-					var value = this.value,
-						options = {};
-					if(!/^\d+$/.test(value)) return;
-					options[this.name] = value;
-					ins3.reload(options);
-				});
-				$(".slide").click(function() {
-					$(".slide-box").slideToggle()
-				})
-				$('.slide-item').each(function() {
-					$(this).click(function() {
-						$(this).addClass("this");
-						$(this).siblings().removeClass("this")
-					})
-				})
-			});
+				methods: {
+					getNavigation: function(){
+						let that = this;
+						$.ajax({
+							type: "get",
+							async: false,
+							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovieDetail?mercId=925336436335575040&movieId=",
+							success: function(res) {
+								that.navigation = res.data;
+							}
+						});
+					},
+
+					getMovieList: function(categoryId) {
+						let that = this;
+						$.ajax({
+							type: "get",
+							async: false,
+							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=",
+							success: function(res) {
+								console.log(res.data);
+								that.movieList = res.data.movieList;
+							}
+						});
+					},
+
+					switchType: function() {
+						let that = this;
+							$('.slide-item').click(function() {
+								var num = $(this).attr("data-type");
+								if(num == '1') {
+									var categoryId = $(this).attr('categoryId');
+									that.getMovieList(categoryId);
+								} else {
+									var sortValue = $(this).attr("data-sortValue");
+									var categoryId = $(this).attr("categoryId") //3和2一样	
+									var categoryName = $(this).attr("data-categoryName");
+									that.getMovieList(3);
+								}
+							})
+					},
+
+					slide: function() {
+						$(".slide").click(function() {
+							$(".slide-box").slideToggle()
+						})
+					},
+
+					swipe: function() {
+						var swiper = new Swiper('.swiper-container', {
+							autoplay: true,
+							slidesPerView: 2,
+							spaceBetween: 30,
+							freeMode: true,
+							pagination: {
+								el: '.swiper-pagination',
+								clickable: true,
+							},
+						});
+					},
+
+					layInit: function() {
+						layui.use(['carousel', 'element', 'form'], function() {
+							var $ = layui.jquery,
+								element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+							var carousel = layui.carousel,
+								form = layui.form;
+							//常规轮播
+							carousel.render({
+								elem: '#test1',
+								arrow: 'always',
+								width: '100%'
+							});
+							var $ = layui.$,
+								active = {
+									set: function(othis) {
+										var THIS = 'layui-bg-normal',
+											key = othis.data('key'),
+											options = {};
+										othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+										options[key] = othis.data('value');
+										ins3.reload(options);
+									}
+								};
+							//监听开关
+							form.on('switch(autoplay)', function() {
+								ins3.reload({
+									autoplay: this.checked
+								});
+							});
+							$('.demoSet').on('keyup', function() {
+								var value = this.value,
+									options = {};
+								if(!/^\d+$/.test(value)) return;
+								options[this.name] = value;
+								ins3.reload(options);
+							});
+							$('.slide-item').each(function() {
+								$(this).click(function() {
+									$(this).addClass("this");
+									$(this).siblings().removeClass("this")
+								})
+							})
+						});
+					}
+				},
+
+				created: function() {
+					this.getNavigation();
+					this.getMovieList(0);
+				},
+
+				mounted: function() {
+					this.slide();
+					this.swipe();
+					this.layInit();
+					this.switchType()
+				}
+			})
 		</script>
 	</body>
 
