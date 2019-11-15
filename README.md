@@ -1,3 +1,3 @@
 # XShi
 
-## A project for fun
+## Join us For Coding
