@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Swiper demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui-v2.2.5/css/layui.css" />
+		<style>
+			body {
+				background: #eee;
+				font-family: "PingFangSC-Medium ";
+				font-size: 14px;
+				color: #000;
+				margin: 0;
+				padding: 0;
+				color: #8c8c8c;
+				background: black;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: 100px;
+			}
+			
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+				/* Center slide text vertically */
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			img {
+				border: none;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.padding-center {
+				padding: 15px 15px 0 15px;
+			}
+			
+			.padding-center_ {
+				padding: 10px 15px 0 15px;
+			}
+			
+			.left-padding {
+				padding: 5px 0px 5px 15px;
+			}
+			
+			.layui-col-xs7 {
+				padding: 0 0px 0 20px;
+			}
+			
+			.opacity {
+				line-height: 30px;
+				border-radius: 5px;
+				background: #1C1C1C;
+				/* padding: 0; */
+				font-size: 12px;
+				margin: 10px 0;
+				padding: 0 0 0 5px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.icon {
+				display: inline-block;
+				background: url(img/bander.png);
+				background-position: center;
+				width: 25px;
+				height: 25px;
+				line-height: 25px;
+				color: white;
+				font-size: 15px;
+				text-align: center;
+				border-radius: 2px;
+				margin-right: 5px;
+			}
+			
+			.small {
+				line-height: 25px;
+			}
+			
+			.title {
+				color: #cecece;
+				font-size: 20px;
+				line-height: 25px;
+				letter-spacing: 2px;
+			}
+			
+			.layui-col-xs12 {
+				background: #1C1C1C;
+				border-radius: 4px;
+				margin: 10px 0;
+				padding: 5px;
+			}
+			
+			b,
+			.lookup {
+				color: #cecece;
+				margin-right: 5px;
+			}
+			
+			.intro {
+				line-height: 22px;
+			}
+			
+			.lookup {
+				line-height: 30px;
+				font-weight: 600;
+			}
+			
+			.comment {
+				background: #1C1C1C;
+				border-radius: 4px;
+				padding: 5px;
+				margin: 0px 0px 8px 0;
+			}
+			
+			.iconfont {
+				font-size: 14px;
+			}
+			
+			.i {
+				color: #ce9800;
+			}
+			
+			@media screen and (min-width: 1000px) {
+				body {
+					font-size: 16px;
+				}
+				.padding-center {
+					padding: 35px 150px 0 150px;
+				}
+				.left-padding {
+					padding: 20px 150px 20px 150px;
+				}
+				.padding-center_ {
+					padding: 10px 150px 0 150px;
+				}
+				.layui-col-xs12 {
+					height: 150px;
+					padding: 15px;
+					margin: 30px 0 10px 0;
+				}
+				.intro {
+					line-height: 30px;
+				}
+				.comment {
+					line-height: 30px;
+					margin: 0px 0px 15px 0;
+				}
+				.layui-txt {
+					padding: 10px;
+				}
+				.swiper-container {
+					height: 140px;
+				}
+				.layui-col-xs5 {
+					width: 31.66666667% !important;
+					height: 400px;
+				}
+				.layui-col-xs7 {
+					width: 68.33333333% !important;
+					padding: 0 0px 0 50px;
+					height: 400px;
+				}
+				img {
+					width: 100%;
+					height: 100%;
+				}
+				.title {
+					font-size: 30px;
+					line-height: 55px;
+					letter-spacing: 15px;
+				}
+				.icon {
+					width: 55px;
+					height: 55px;
+					line-height: 55px;
+					font-size: 20px;
+					margin-right: 30px;
+				}
+				.opacity {
+					line-height: 50px;
+					border-radius: 5px;
+					font-size: 16px;
+					margin: 25px 0;
+					padding: 0 0 0 5px;
+				}
+				.small {
+					line-height: 30px;
+					font-size: 16px;
+				}
+				.opacity b {
+					width: 40px;
+					text-align: center;
+					display: inline-block;
+				}
+				.max{padding: 30px 0 0 0;}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="padding-center">
+			<div class="layui-row">
+				<div class="layui-col-xs5">
+					<img src="img/2.jpg" alt="" style="border-radius: 3px;" />
+					<!--<img src="img/12.png" alt="" style="border-radius: 3px;" />-->
+				</div>
+				<div class="layui-col-xs7">
+					<div><span class="icon">7.1</span><span class="title">愤怒的小鸟</span></div>
+					<div class="max">
+						<small class="small">美国&nbsp;/&nbsp;爱情&nbsp;/&nbsp;言情&nbsp;/&nbsp;科幻&nbsp;/&nbsp;动画</small><br>
+						<small class="small">114分钟&nbsp;/&nbsp;2018-12-20上映</small>
+					</div>
+					<div class="opacity"><b>导演</b>费雷哥.雷力/克雷-卡斯提</div>
+					<div class="opacity"><b>编剧</b>麦克.科里昂</div>
+					<div class="opacity"><b>主演</b>史蒂芬.雷格斯</div>
+				</div>
+			</div>
+			<div class="layui-row">
+				<div class="layui-col-xs12">
+					<div class="intro">
+						<b>简介</b>我们熟悉的故事发展到这里应该是： 1888年10月17日，爱迪生向美国专利局提出自己要发明 “活动电影放映机” 的申请。 1891年爱迪生实验室推出了 世界上第一部电影摄像机 ，他把这一专利注册归于自己名下。 之后不久，以《佛瑞德·欧特的喷嚏》为开端，爱迪生开始利用电影进行营利。
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Swiper -->
+		<div class="left-padding">
+			<div class="lookup">
+				剧照
+			</div>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">Slide 1</div>
+					<div class="swiper-slide">Slide 2</div>
+					<div class="swiper-slide">Slide 3</div>
+					<div class="swiper-slide">Slide 4</div>
+					<div class="swiper-slide">Slide 5</div>
+					<div class="swiper-slide">Slide 6</div>
+					<div class="swiper-slide">Slide 7</div>
+					<div class="swiper-slide">Slide 8</div>
+					<div class="swiper-slide">Slide 9</div>
+					<div class="swiper-slide">Slide 10</div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+		<div class="padding-center_">
+			<div class="lookup">评论</div>
+			<div class="comment">
+				<div>
+					<img src="img/img.jpg" style="width: 30px;border-radius: 50%;" />
+					<b>泡沫味的草莓</b>
+					<small class="iconfont icon-icon"></small>
+					<small class="iconfont icon-icon"></small>
+				</div>
+				<div class="layui-txt">
+					泰坦尼克号的剧情简介： 1912年4月10日，号称 “世界工业史上的奇迹”的豪华客轮泰坦尼克号开始了自己的处女航，从英国的南安普顿出发驶往美国纽约。富家少女罗丝（凯特•温丝莱特）与母亲及未婚夫卡尔坐上了头等舱；另一边，放荡不羁的少年画家杰克（莱昂纳多·迪卡普里奥）也在码头的一场赌博中赢得了下等舱的船票。 罗丝厌倦了上流社会虚伪的生活，不愿嫁给卡尔，打算投海自尽，被杰克救起。很快，美丽活泼的罗丝与英俊开朗的杰克相爱，杰克带罗丝参加下等舱的舞会、为她画像，二人的感情逐渐升温。 1912年4月14日，星期天晚上，一个风平浪静的夜晚。泰坦尼克号撞上了冰山，“永不沉没的”泰坦尼克号面临沉船的命运，罗丝和杰克刚萌芽的爱情也将经历生死的考验。
+				</div>
+			</div>
+			<div class="comment">
+				<div>
+					<img src="img/img.jpg" style="width: 30px;border-radius: 50%;" />
+					<b>Meet  you</b>
+					<small class="iconfont icon-icon i"></small>
+					<small class="iconfont icon-icon i"></small>
+					<small class="iconfont icon-icon i"></small>
+				</div>
+				<div class="layui-txt">
+					泰坦尼克号的剧情简介： 1912年4月10日，号称 “世界工业史上的奇迹”的豪华客轮泰坦尼克号开始了自己的处女航，从英国的南安普顿出发驶往美国纽约。富家少女罗丝（凯特•温丝莱特）与母亲及未婚夫卡尔坐上了头等舱；另一边，放荡不羁的少年画家杰克（莱昂纳多·迪卡普里奥）也在码头的一场赌博中赢得了下等舱的船票。 罗丝厌倦了上流社会虚伪的生活，不愿嫁给卡尔，打算投海自尽，被杰克救起。很快，美丽活泼的罗丝与英俊开朗的杰克相爱，杰克带罗丝参加下等舱的舞会、为她画像，二人的感情逐渐升温。 1912年4月14日，星期天晚上，一个风平浪静的夜晚。泰坦尼克号撞上了冰山，“永不沉没的”泰坦尼克号面临沉船的命运，罗丝和杰克刚萌芽的爱情也将经历生死的考验。
+				</div>
+			</div>
+
+		</div>
+		<script src="https://www.layuicdn.com/layui-v2.2.5/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.js"></script>
+		<script>
+		</script>
+	</body>
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+			slidesPerView: 4,
+			spaceBetween: 30,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+		});
+	</script>
+
+</html>

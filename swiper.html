@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Swiper demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="font/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui-v2.2.5/css/layui.css" />
+		<style>
+			.slide-box {
+				width: calc(100% - 10px);
+				float: left;
+				display: -webkit-box;
+				overflow-x: scroll;
+				-webkit-overflow-scrolling: touch;
+				padding: 0 5px;
+			}
+			
+			.slide-box::-webkit-scrollbar {
+				background-color: transparent;
+			}
+			
+			.slide-box {
+				-ms-overflow-style: none;
+			}
+			
+			.slide-box {
+				overflow: -moz-scrollbars-none;
+			}
+			
+			.slide-item {
+				text-align: center;
+				text-align: center;
+				padding: 5px 10px;
+				margin: 5px 50px 0px 0px;
+			}
+			
+			html,
+			body {
+				/*position: relative;
+				height: 250px;*/
+				font-family: "PingFangSC-Medium ";
+				cursor: pointer;
+			}
+			
+			body {
+				background: #eee;
+				font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+				font-size: 16px;
+				color: #000;
+				margin: 0;
+				padding: 0;
+				background: #131212;
+				color: white;
+			}
+			
+			.layui-tab-title li {
+				font-size: 16px;
+			}
+			
+			.swiper-container {
+				width: calc(100% - 60px);
+				height: 250px;
+				padding: 0px 30px;
+			}
+			
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+				/* Center slide text vertically */
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			.swiper-slide img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.tltle-span {
+				font-size: 18px;
+				font-family: PingFangSC-Medium;
+			}
+			
+			.tltle-evaluate {
+				float: right;
+			}
+			
+			.center {
+				text-align: center;
+				font-size: 25px;
+				font-family: PingFangSC-Medium;
+				line-height: 60px;
+			}
+			
+			.layui-inputs {
+				width: calc(100% - 40px);
+				border-radius: 5px;
+				height: 40px;
+				/*opacity: 0.1;*/
+				border: none;
+				line-height: 40px;
+				float: left;
+				background: none;
+				color: white;
+			}
+			
+			.left {
+				font-size: 20px;
+			}
+			
+			.right {
+				text-align: right;
+			}
+			
+			.layui-col-md6 {
+				line-height: 50px;
+			}
+			
+			.layui-lable {
+				float: left;
+				opacity: 0.9;
+				color: white;
+				line-height: 40px;
+				width: 10%;
+				border-radius: 5px;
+				background: #292828;
+				margin: 10px;
+				text-align: center;
+				100%
+			}
+			
+			.layui-tab-brief>.layui-tab-title .layui-this {
+				color: #f1d300;
+			}
+			
+			.layui-tab-brief>.layui-tab-more li.layui-this:after,
+			.layui-tab-brief>.layui-tab-title .layui-this:after,
+			.layui-tab-title {
+				border-bottom: none;
+			}
+			
+			.icon-dizhi {
+				width: 40px;
+				text-align: center;
+				display: inline-block;
+			}
+			
+			.p-text {
+				text-align: center;
+				height: 30px;
+				line-height: 30px;
+			}
+			
+			.layui-col-xs3 {
+				text-align: center;
+			}
+			
+			.slide-item:hover {
+				color: #F7CC46;
+			}
+			
+			li:hover {
+				color: #F7CC46;
+			}
+			
+			li,
+			.slide-item {
+				color: #8c8c8c;
+			}
+			
+			.icon-sousuo {
+				float: left;
+				line-height: 40px;
+				/* margin: 10px; */
+				width: 40px;
+				text-align: center;
+			}
+			
+			.layui-search {
+				background: #272626;
+				margin: 10px 0;
+				height: 40px;
+				float: left;
+				width: 80%;
+				line-height: 40px;
+				border-radius: 5px;
+			}
+			
+			.this {
+				background: #F7CC46;
+				color: white;
+				border-radius: 4px;
+			}
+			
+			label:hover {
+				color: #F7CC46;
+			}
+			
+			.layui-tab-item {
+				display: none;
+				float: left;
+				width: 100%;
+			}
+			
+			#ul {
+				/*display: flex;*/
+				width: calc(100% - 60px);
+				padding: 0 30px 10px;
+				height: 370px;
+			}
+			
+			#ul li {
+				/*flex: 1;*/
+				width: 20%;
+				float: left;
+				height: 300px;
+				margin-left: 5%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			#ul li:first-child {
+				/*margin: 0;*/
+			}
+			
+			#ul li img {
+				width: 100%;
+			}
+			
+			.text-conter {
+				padding: 0 30px;
+				height: 60px;
+				margin: 20px 0 10px 0;
+			}
+			
+			.slide-box:last-child {
+				margin-bottom: 10px;
+			}
+			
+			.text-conters {
+				padding: 0 30px;
+			}
+			/*媒体查询*/
+			
+			.row {
+				padding: 0 30px 15px;
+			}
+			
+			@media screen and (max-width: 600px) {
+				.center {
+					font-size: 15px;
+					line-height: 40px;
+				}
+				.swiper-container {
+					height: 100px;
+					width: calc(100% - 20px);
+					padding: 0px;
+				}
+				.text-conter,
+				.text-conters {
+					padding: 0 10px;
+					height: 50px;
+					margin: 10px 0 0px 0;
+					width: calc(100% - 20px);
+				}
+				.row {
+					padding: 0 10px 8px;
+				}
+				.layui-search {
+					margin: 10px 0;
+					height: 30px;
+					line-height: 30px;
+				}
+				.layui-lable {
+					line-height: 30px;
+				}
+				.layui-tab-title {
+					height: 35px;
+				}
+				.layui-tab-title li {
+					line-height: 35px;
+					min-width: 30px;
+					padding: 0 10px;
+					font-size: 14px;
+				}
+				.layui-inputs,
+				.icon-sousuo {
+					height: 30px;
+					line-height: 30px;
+				}
+				#ul {
+					width: calc(100% - 10px);
+					padding: 0 5px;
+					height: 120px;
+				}
+				.layui-tab-bar {
+					width: 30px;
+					height: 30px;
+					line-height: 30px;
+					background-color: #171717;
+					border-width: 0px;
+					border-style: initial;
+					border-radius: 0;
+				}
+				.tltle-span {
+					font-size: 14px;
+				}
+				.tltle-evaluate {
+					font-size: 12px;
+				}
+				#ul li {
+					height: 100px;
+				}
+				body {
+					height: auto;
+					font-size: 14px;
+				}
+				.slide-item {
+					padding: 5px 10px;
+					margin: 0px 5px 0px 0px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+			<div class="layui-row row">
+				<div class="layui-col-md12 center ">
+					影院详情
+				</div>
+				<span class="tltle-span">{{merc_name}}</span>
+				<span class="tltle-evaluate">评价 &nbsp;> </span>
+
+			</div>
+			<!-- Swiper -->
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" v-for="item in merc_image.mercImage">
+						<img :src="item" />
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="text-conter">
+				<p class="layui-search">
+					<span class="iconfont icon-dizhi"></span> {{merc_address}}
+				</p>
+				<label class="layui-lable"><span class="iconfont icon-contact"></span></label>
+			</div>
+			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+
+				<div class="slide-box" style="padding: 0 30px;">
+					<template v-for="(item,index) in typeList" v-if="index==0">
+						<div class="slide-item" data-type="1" :data-id="item.id">
+							{{item.groupName}}
+						</div>
+					</template>
+					<template v-else>
+						<div class="slide-item" data-type="1" :data-id="item.id">
+							{{item.groupName}}
+						</div>
+					</template>
+				</div>
+				<div class="text-conters">
+					<p class="layui-search">
+						<span class="iconfont icon-sousuo"></span>
+						<input type="search" name="" id="" class="layui-inputs" placeholder="请输入查找的电影" />
+					</p>
+					<!--筛选-->
+					<label class="layui-lable slide"><span class="iconfont icon-iconfontzhizuobiaozhun023125"></span></label>
+					<div class="slide-box">
+						<div class="slide-item this" v-for="(item,index) in sortList" v-if="index==0" data-type="2" :data-sortValue="item.sortValue">
+							{{item.sortValue}}
+						</div>
+						<div class="slide-item" v-else data-type="2" :data-sortValue="item.sortValue">
+							{{item.sortValue}}
+						</div>
+					</div>
+					<div class="slide-box">
+						<div class="slide-item this" v-for="(item,index) in categoryList" v-if="index==0" :data-categoryId="item.categoryId">
+							{{item.categoryName}}
+						</div>
+						<div class="slide-item" v-else :data-categoryId="item.categoryId" :data-categoryId="item.categoryId">
+							{{item.categoryName}}
+						</div>
+					</div>
+					<div class="slide-box">
+						<div class="slide-item this" v-for="(item,index) in countryList" v-if="index==0" :data-categoryId="item.categoryId">
+							{{item.categoryName}}
+						</div>
+						<div class="slide-item" v-else :data-categoryId="item.categoryId">
+							{{item.categoryName}}
+						</div>
+					</div>
+					<div class="slide-box">
+						<div class="slide-item this" v-for="(item,index) in yearList" v-if="index==0" :data-categoryName="item.categoryName">
+							{{item.categoryName}}
+						</div>
+						<div class="slide-item" v-else :data-categoryName="item.categoryName">
+							{{item.categoryName}}
+						</div>
+					</div>
+				</div>
+				<div class="layui-tab-content" style="height: 100px;">
+					<div class="layui-tab-item layui-show">
+						<ul id="ul">
+
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- Swiper JS -->
+		<script src="https://www.layuicdn.com/layui-v2.2.5/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.js"></script>
+		<script>
+			//			var data = {
+			//				"message": "请求成功！",
+			//				"status": "success",
+			//				"data": {
+			//					"merc_address": "陕西省西安市雁塔区瑞吉大厦",
+			//					"openStarttime": "08:00",
+			//					"mercImageCount": 11,
+			//					"sortList": [{
+			//						"sortValue": "最新",
+			//						"sortKey": "new"
+			//					}],
+			//					"openEndtime": "23:00",
+			//					"merc_image": {
+			//						"mercImage": [
+			//							"https://xiaoniao-images-test.oss-cn-beijing.aliyuncs.com/0b4a92aa-e441-4502-b48e-66292baf2cad.png",
+			//							"https://xiaoniao-images-test.oss-cn-beijing.aliyuncs.com/440fbae9-a4a0-4a9a-a927-bccca8649f97.png"
+			//						]
+			//					},
+			//					"yearList": [{
+			//						"categoryName": "全部",
+			//						"categoryId": "0"
+			//					}],
+			//					"countryList": [{
+			//						"categoryName": "全部",
+			//						"categoryId": "0"
+			//					}],
+			//					"categoryList": [{
+			//						"categoryId": "0",
+			//						"categoryName": "全部",
+			//						"pageSize": 0,
+			//						"pageStart": 0
+			//					}],
+			//					"businessCode": "00",
+			//					"businessMessage": "查询成功！",
+			//					"merc_id": "925336436335575040",
+			//					"merc_description": "",
+			//					"merc_phone": "13772541727",
+			//					"longitude": "108.90863",
+			//					"tagList": [
+			//						"4D厅"
+			//					],
+			//					"latitude": "34.241217",
+			//					"is_shelf": true,
+			//					"typeList": [{
+			//						"groupName": "全部",
+			//						"id": 0,
+			//						"movieCount": 0,
+			//						"movieName": 0,
+			//						"pageSize": 0,
+			//						"pageStart": 0,
+			//						"sort": 0
+			//					}],
+			//					"merc_name": "小鸟观映·钟楼体验店"
+			//				}
+			//			}
+			$.ajax({
+				type: "get",
+				url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovieDetail?mercId=925336436335575040&movieId=",
+				success: function(data) {
+					console.log(data)
+					new Vue({
+						el: '#app',
+						data: data.data
+					})
+				}
+			});
+
+			function ajax() {
+                //准备吧下面的遍历点击事件封装起来或者 在vue里面用
+			}
+			$(".slide-item").each(function() {
+				$(this).click(function() {
+					var num = $(this).attr("data-type")
+					if(num == '1') {
+						var categoryId = $(this).attr()
+						$.ajax({
+							type: "get",
+							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=",
+							success: function(data) {
+								console.log(data)
+								var html = ''
+								for(var i = 0; i < data.data.movieList.length; i++) {
+									html += '<li>' +
+										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
+										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
+										'</li>'
+								}
+								$('#ul').html(html)
+							}
+						});
+					} else {
+						var sortValue = $(this).attr("data-sortValue")
+						var categoryId = $(this).attr("categoryId") //3和2一样	
+						var categoryName = $(this).attr("data-categoryName")
+
+						$.ajax({
+							type: "get",
+							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue,
+							success: function(data) {
+								console.log(data)
+								var html = ''
+								for(var i = 0; i < data.data.movieList.length; i++) {
+									html += '<li>' +
+										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
+										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
+										'</li>'
+								}
+								$('#ul').html(html)
+							}
+						});
+
+					}
+				})
+			})
+			$.ajax({
+				type: "get",
+				url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=0&movieName=",
+				success: function(data) {
+					console.log(data)
+					var html = ''
+					for(var i = 0; i < data.data.movieList.length; i++) {
+						html += '<li>' +
+							'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
+							'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
+							'</li>'
+					}
+					$('#ul').html(html)
+
+				}
+			});
+			var swiper = new Swiper('.swiper-container', {
+				autoplay: true,
+				slidesPerView: 2,
+				spaceBetween: 30,
+				freeMode: true,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				},
+			});
+			layui.use(['carousel', 'element', 'form'], function() {
+				var $ = layui.jquery,
+					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+				var carousel = layui.carousel,
+					form = layui.form;
+				//常规轮播
+				carousel.render({
+					elem: '#test1',
+					arrow: 'always',
+					width: '100%'
+				});
+				var $ = layui.$,
+					active = {
+						set: function(othis) {
+							var THIS = 'layui-bg-normal',
+								key = othis.data('key'),
+								options = {};
+							othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+							options[key] = othis.data('value');
+							ins3.reload(options);
+						}
+					};
+				//监听开关
+				form.on('switch(autoplay)', function() {
+					ins3.reload({
+						autoplay: this.checked
+					});
+				});
+				$('.demoSet').on('keyup', function() {
+					var value = this.value,
+						options = {};
+					if(!/^\d+$/.test(value)) return;
+					options[this.name] = value;
+					ins3.reload(options);
+				});
+				$(".slide").click(function() {
+					$(".slide-box").slideToggle()
+				})
+				$('.slide-item').each(function() {
+					$(this).click(function() {
+						$(this).addClass("this");
+						$(this).siblings().removeClass("this")
+					})
+				})
+			});
+		</script>
+	</body>
+
+</html>
