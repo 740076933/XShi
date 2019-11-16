@@ -14,6 +14,16 @@
 				height: 60px;
 			}
 			
+			.no-data {
+				height: 100%;
+				line-height: 60px;
+				text-align: center;
+				background: white;
+				width: calc(100% - 15px);
+				/* width: 100%; */
+				background: #1C1C1C;
+			}
+			
 			.swiper-slide {
 				text-align: center;
 				font-size: 18px;
@@ -70,11 +80,10 @@
 			
 			.icon {
 				display: inline-block;
-				background: url(img/bander.png);
+				background: url(../img/bander.png);
 				background-position: center;
 				width: 25px;
-				height: 25px;
-				line-height: 25px;
+				s line-height: 25px;
 				color: white;
 				font-size: 15px;
 				text-align: center;
@@ -135,10 +144,10 @@
 			}
 			
 			.layui-bj {
-				background: url(img/bj.png)no-repeat;
+				background: url(../img/bj.png)no-repeat;
 				height: 100px;
 				background-position: center;
-				background-size: 20% 70%;
+				background-size: 35% 80%;
 			}
 			
 			.hide {
@@ -163,6 +172,7 @@
 				}
 				.layui-bj {
 					height: 200px;
+					background-size: 20% 70%;
 				}
 				.title {
 					letter-spacing: 2px;
@@ -239,5 +249,9 @@
 				}
 				.max {
 					padding: 30px 0 0 0;
+				}
+				.no-data {
+					line-height: 140px;
+					width: auto;
 				}
 			}
