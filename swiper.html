@@ -2,10 +2,10 @@
 <html lang="en">
 
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8" />
 		<title>Swiper demo</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="css/swiper.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" type="text/css" href="font/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui-v2.2.5/css/layui.css" />
 		<style>
@@ -406,63 +406,12 @@
 
 				<div class="layui-tab-content" style="height: 100px;">
 					<div class="layui-tab-item layui-show">
-						<!--<ul id="common-container">
-							<li v-for="item in movieList">
-								<img :src="item.movieLogo" alt="">
-								<p class="p-text" v-text="item.movieName"></p>
-							</li>
-						</ul>-->
-						<ul id="common-container">
-							<li>
-								<!--id传这个字段fId-->
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-						</ul>
-						<ul id="common-container">
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
-							</li>
-							<li>
-								<a href="particulars.html?id=1">
-								<img src="img/1.png" alt="">
-								<p class="p-text">速度激情</p>
-								</a>
+						<ul id="common-container" v-for="group in movieGroups">
+							<li v-for="item in group">
+									<a :href="'particulars.html?id=' + item.fId">
+										<img :src="item.movieLogo" alt="">
+										<p class="p-text" v-text="item.movieName"></p>
+									</a>
 							</li>
 						</ul>
 					</div>
@@ -494,12 +443,12 @@
 						});
 					},
 
-					getMovieList: function(categoryId) {
+					getMovieList: function(url) {					
 						let that = this;
 						$.ajax({
 							type: "get",
 							async: false,
-							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=",
+							url: url,
 							success: function(res) {
 								console.log(res.data);
 								that.movieList = res.data.movieList;
@@ -510,16 +459,18 @@
 					filter: function() {
 						let that = this;
 						$('.slide-item').click(function() {
-							var num = $(this).attr("data-type");
+							let num = $(this).attr("data-type");
+							let url = "";
 							if(num == '1') {
-								var categoryId = $(this).attr('categoryId');
-								that.getMovieList(categoryId);
+								let categoryId = $(this).attr('categoryId');
+								url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=";	
 							} else {
 								var sortValue = $(this).attr("data-sortValue");
 								var categoryId = $(this).attr("categoryId") //3和2一样	
 								var categoryName = $(this).attr("data-categoryName");
-								that.getMovieList(3);
+								let url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue;
 							}
+							that.getMovieList(url);
 						})
 					},
 
@@ -588,9 +539,25 @@
 					}
 				},
 
+				computed: {
+					movieGroups: function() {
+						let groups = new Array();
+						let len = this.movieList.length;
+
+						for (let i = 0; i < len; i++) {
+							let j = Math.floor(i / 4);
+							let k = i % 4;
+							if (k == 0) {
+								groups[j] = new Array();
+							}
+							groups[j][k] = this.movieList[i];
+						}
+						return groups;
+					}
+				},
 				created: function() {
 					this.getNavigation();
-					this.getMovieList(0);
+					this.getMovieList("https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=0&movieName=");
 				},
 
 				mounted: function() {
@@ -600,51 +567,6 @@
 					this.filter();
 				}
 			})
-
-			//			$(".slide-item").each(function() {
-			//				$(this).click(function() {
-			//					var num = $(this).attr("data-type")
-			//					if(num == '1') {
-			//						var categoryId = $(this).attr()
-			//						$.ajax({
-			//							type: "get",
-			//							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=",
-			//							success: function(data) {
-			//								console.log(data)
-			//								var html = ''
-			//								for(var i = 0; i < data.data.movieList.length; i++) {
-			//									html += '<li>' +
-			//										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
-			//										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
-			//										'</li>'
-			//								}
-			//								$('#ul').html(html)
-			//							}
-			//						});
-			//					} else {
-			//						var sortValue = $(this).attr("data-sortValue")
-			//						var categoryId = $(this).attr("categoryId") //3和2一样	
-			//						var categoryName = $(this).attr("data-categoryName")
-			//
-			//						$.ajax({
-			//							type: "get",
-			//							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue,
-			//							success: function(data) {
-			//								console.log(data)
-			//								var html = ''
-			//								for(var i = 0; i < data.data.movieList.length; i++) {
-			//									html += '<li>' +
-			//										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
-			//										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
-			//										'</li>'
-			//								}
-			//								$('#ul').html(html)
-			//							}
-			//						});
-			//
-			//					}
-			//				})
-			//			})
 		</script>
 	</body>
 
