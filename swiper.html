@@ -216,21 +216,25 @@
 			}
 			
 			#common-container {
-				/*display: flex;*/
+				display: flex;
 				width: calc(100% - 60px);
 				padding: 0 30px 10px;
 				height: 370px;
 			}
 			
 			#common-container li {
-				/*flex: 1;*/
-				width: 20%;
+				flex: 1;
+				/*width: 20%;*/
 				float: left;
-				height: 300px;
+				height: 420px;
 				margin-left: 5%;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+			}
+			
+			#common-container li:first-child {
+				margin-left: 0;
 			}
 			
 			#common-container li img {
@@ -354,21 +358,17 @@
 
 			<div class="text-conter">
 				<p class="layui-search">
-					<span class="iconfont icon-dizhi"></span> <template v-text="navigation.merc_address"></template>
+					<span class="iconfont icon-dizhi"></span>
+					<template v-text="navigation.merc_address"></template>
 				</p>
 				<label class="layui-lable"><span class="iconfont icon-contact"></span></label>
 			</div>
 
 			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-				<div class="slide-box" style="padding: 0 30px;">
-						<div class="slide-item" 
-								data-type="1"
-								v-for="(item,index) in navigation.typeList"
-								v-if="index==0"
-								:data-id="item.id"
-								v-text="item.groupName">
-							</div>
-						<div class="slide-item" data-type="1" v-else :data-id="item.id" v-text="item.groupName"></div>
+				<div class="slide-box" style="padding: 0 30px;width: calc(100% - 60px);">
+					<div class="slide-item" data-type="1" v-for="(item,index) in navigation.typeList" v-if="index==0" :data-id="item.id" v-text="item.groupName">
+					</div>
+					<div class="slide-item" data-type="1" v-else :data-id="item.id" v-text="item.groupName"></div>
 				</div>
 
 				<div class="text-conters">
@@ -379,46 +379,26 @@
 					<label class="layui-lable slide"><span class="iconfont icon-iconfontzhizuobiaozhun023125"></span></label>
 
 					<div class="slide-box">
-						<div class="slide-item slide-selected-item"
-								v-for="(item,index) in navigation.sortList" 
-								v-if="index==0" 
-								data-type="2" 
-								:data-sortValue="item.sortValue"
-								v-text="item.sortValue">
+						<div class="slide-item slide-selected-item" v-for="(item,index) in navigation.sortList" v-if="index==0" data-type="2" :data-sortValue="item.sortValue" v-text="item.sortValue">
 						</div>
 						<div class="slide-item" v-else data-type="2" :data-sortValue="item.sortValue" v-text="item.sortValue"></div>
 					</div>
 
 					<div class="slide-box">
-						<div class="slide-item slide-selected-item" 
-								v-for="(item,index) in navigation.categoryList" 
-								v-if="index==0" 
-								:data-categoryId="item.categoryId"
-								v-text="item.categoryName">
+						<div class="slide-item slide-selected-item" v-for="(item,index) in navigation.categoryList" v-if="index==0" :data-categoryId="item.categoryId" v-text="item.categoryName">
 						</div>
-						<div class="slide-item" 
-								v-else :data-categoryId="item.categoryId" 
-								:data-categoryId="item.categoryId" 
-								v-text="item.categoryName">
+						<div class="slide-item" v-else :data-categoryId="item.categoryId" :data-categoryId="item.categoryId" v-text="item.categoryName">
 						</div>
 					</div>
 
 					<div class="slide-box">
-						<div class="slide-item slide-selected-item"
-								v-for="(item,index) in navigation.countryList"
-								v-if="index==0"
-								:data-categoryId="item.categoryId"
-								v-text="item.categoryName">
+						<div class="slide-item slide-selected-item" v-for="(item,index) in navigation.countryList" v-if="index==0" :data-categoryId="item.categoryId" v-text="item.categoryName">
 						</div>
 						<div class="slide-item" v-else :data-categoryId="item.categoryId" v-text="item.categoryName"></div>
 					</div>
 
 					<div class="slide-box">
-						<div class="slide-item slide-selected-item" 
-								v-for="(item,index) in navigation.yearList" 
-								v-if="index==0"
-								:data-categoryName="item.categoryName"
-								v-text="item.categoryName">
+						<div class="slide-item slide-selected-item" v-for="(item,index) in navigation.yearList" v-if="index==0" :data-categoryName="item.categoryName" v-text="item.categoryName">
 						</div>
 						<div class="slide-item" v-else :data-categoryName="item.categoryName" v-text="item.categoryName"></div>
 					</div>
@@ -426,10 +406,63 @@
 
 				<div class="layui-tab-content" style="height: 100px;">
 					<div class="layui-tab-item layui-show">
-						<ul id="common-container">
+						<!--<ul id="common-container">
 							<li v-for="item in movieList">
 								<img :src="item.movieLogo" alt="">
 								<p class="p-text" v-text="item.movieName"></p>
+							</li>
+						</ul>-->
+						<ul id="common-container">
+							<li>
+								<!--id传这个字段fId-->
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+						</ul>
+						<ul id="common-container">
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
+							</li>
+							<li>
+								<a href="particulars.html?id=1">
+								<img src="img/1.png" alt="">
+								<p class="p-text">速度激情</p>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -449,7 +482,7 @@
 					movieList: []
 				},
 				methods: {
-					getNavigation: function(){
+					getNavigation: function() {
 						let that = this;
 						$.ajax({
 							type: "get",
@@ -476,18 +509,18 @@
 
 					filter: function() {
 						let that = this;
-							$('.slide-item').click(function() {
-								var num = $(this).attr("data-type");
-								if(num == '1') {
-									var categoryId = $(this).attr('categoryId');
-									that.getMovieList(categoryId);
-								} else {
-									var sortValue = $(this).attr("data-sortValue");
-									var categoryId = $(this).attr("categoryId") //3和2一样	
-									var categoryName = $(this).attr("data-categoryName");
-									that.getMovieList(3);
-								}
-							})
+						$('.slide-item').click(function() {
+							var num = $(this).attr("data-type");
+							if(num == '1') {
+								var categoryId = $(this).attr('categoryId');
+								that.getMovieList(categoryId);
+							} else {
+								var sortValue = $(this).attr("data-sortValue");
+								var categoryId = $(this).attr("categoryId") //3和2一样	
+								var categoryName = $(this).attr("data-categoryName");
+								that.getMovieList(3);
+							}
+						})
 					},
 
 					slide: function() {
@@ -564,9 +597,54 @@
 					this.layInit();
 					this.swipe();
 					this.slide();
-					this.filter();	
+					this.filter();
 				}
 			})
+
+			//			$(".slide-item").each(function() {
+			//				$(this).click(function() {
+			//					var num = $(this).attr("data-type")
+			//					if(num == '1') {
+			//						var categoryId = $(this).attr()
+			//						$.ajax({
+			//							type: "get",
+			//							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=",
+			//							success: function(data) {
+			//								console.log(data)
+			//								var html = ''
+			//								for(var i = 0; i < data.data.movieList.length; i++) {
+			//									html += '<li>' +
+			//										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
+			//										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
+			//										'</li>'
+			//								}
+			//								$('#ul').html(html)
+			//							}
+			//						});
+			//					} else {
+			//						var sortValue = $(this).attr("data-sortValue")
+			//						var categoryId = $(this).attr("categoryId") //3和2一样	
+			//						var categoryName = $(this).attr("data-categoryName")
+			//
+			//						$.ajax({
+			//							type: "get",
+			//							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue,
+			//							success: function(data) {
+			//								console.log(data)
+			//								var html = ''
+			//								for(var i = 0; i < data.data.movieList.length; i++) {
+			//									html += '<li>' +
+			//										'<img src="' + data.data.movieList[i].movieLogo + '" alt="" />' +
+			//										'<p class="p-text">' + data.data.movieList[i].movieName + '</p>' +
+			//										'</li>'
+			//								}
+			//								$('#ul').html(html)
+			//							}
+			//						});
+			//
+			//					}
+			//				})
+			//			})
 		</script>
 	</body>
 

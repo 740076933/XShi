@@ -1,0 +1,243 @@
+			body {
+				background: #eee;
+				font-family: "PingFangSC-Medium ";
+				font-size: 14px;
+				color: #000;
+				margin: 0;
+				padding: 0;
+				color: #8c8c8c;
+				background: black;
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: 60px;
+			}
+			
+			.swiper-slide {
+				text-align: center;
+				font-size: 18px;
+				background: #fff;
+				/* Center slide text vertically */
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			img {
+				border: none;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.padding-center {
+				padding: 15px 15px 0 15px;
+			}
+			
+			.padding-center_ {
+				padding: 10px 15px 0 15px;
+			}
+			
+			.left-padding {
+				padding: 5px 0px 5px 15px;
+			}
+			
+			.layui-col-xs7 {
+				padding: 0 0px 0 20px;
+			}
+			
+			.opacity {
+				line-height: 30px;
+				border-radius: 5px;
+				background: #1C1C1C;
+				/* padding: 0; */
+				font-size: 12px;
+				margin: 10px 0;
+				padding: 0 0 0 5px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.icon {
+				display: inline-block;
+				background: url(img/bander.png);
+				background-position: center;
+				width: 25px;
+				height: 25px;
+				line-height: 25px;
+				color: white;
+				font-size: 15px;
+				text-align: center;
+				border-radius: 2px;
+				margin-right: 5px;
+			}
+			
+			.small {
+				line-height: 25px;
+			}
+			
+			.title {
+				color: #cecece;
+				font-size: 20px;
+				line-height: 25px;
+			}
+			
+			.layui-col-xs12 {
+				background: #1C1C1C;
+				border-radius: 4px 4px 0 0;
+				margin: 10px 0 20px 0px;
+				padding: 5px;
+				/*height: 210px;*/
+			}
+			
+			b,
+			.lookup {
+				color: #cecece;
+				margin-right: 5px;
+			}
+			
+			.intro {
+				line-height: 22px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				/*white-space: nowrap;*/
+				height: 100px;
+			}
+			
+			.lookup {
+				line-height: 30px;
+				font-weight: 600;
+			}
+			
+			.comment {
+				background: #1C1C1C;
+				border-radius: 4px;
+				padding: 5px;
+				margin: 0px 0px 8px 0;
+			}
+			
+			.iconfont {
+				font-size: 14px;
+			}
+			
+			.i {
+				color: #ce9800;
+			}
+			
+			.layui-bj {
+				background: url(img/bj.png)no-repeat;
+				height: 100px;
+				background-position: center;
+				background-size: 20% 70%;
+			}
+			
+			.hide {
+				position: absolute;
+				bottom: -25px;
+				display: inline-block;
+				background: #1C1C1C;
+				width: calc(100% - 30px);
+				left: 0;
+				border-radius: 0 0 4px 4px;
+				line-height: 25px;
+				padding: 0 25px 0px 5px;
+			}
+			
+			@media screen and (min-width: 1000px) {
+				body {
+					font-size: 16px;
+				}
+				.hide {
+					padding: 0 15px;
+					line-height: 45px;
+				}
+				.layui-bj {
+					height: 200px;
+				}
+				.title {
+					letter-spacing: 2px;
+				}
+				.padding-center {
+					padding: 35px 150px 0 150px;
+				}
+				.left-padding {
+					padding: 20px 150px 20px 150px;
+				}
+				.padding-center_ {
+					padding: 10px 150px 0 150px;
+				}
+				.layui-col-xs12 {
+					padding: 15px;
+					margin: 30px 0 20px 0;
+					/*max-height: 200px;
+					overflow: scroll;*/
+				}
+				.intro {
+					line-height: 30px;
+					height: 150px;
+				}
+				.comment {
+					line-height: 30px;
+					margin: 0px 0px 15px 0;
+				}
+				.layui-txt {
+					padding: 10px;
+				}
+				.swiper-container {
+					height: 140px;
+				}
+				.layui-col-xs5 {
+					width: 31.66666667% !important;
+					height: 400px;
+				}
+				.layui-col-xs7 {
+					width: 68.33333333% !important;
+					padding: 0 0px 0 50px;
+					height: 400px;
+				}
+				img {
+					width: 100%;
+					height: 100%;
+				}
+				.title {
+					font-size: 30px;
+					line-height: 55px;
+					letter-spacing: 15px;
+				}
+				.icon {
+					width: 55px;
+					height: 55px;
+					line-height: 55px;
+					font-size: 20px;
+					margin-right: 30px;
+				}
+				.opacity {
+					line-height: 50px;
+					border-radius: 5px;
+					font-size: 16px;
+					margin: 25px 0;
+					padding: 0 0 0 5px;
+				}
+				.small {
+					line-height: 30px;
+					font-size: 16px;
+				}
+				.opacity b {
+					width: 40px;
+					text-align: center;
+					display: inline-block;
+				}
+				.max {
+					padding: 30px 0 0 0;
+				}
+			}
