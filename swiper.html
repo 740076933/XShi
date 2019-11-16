@@ -239,6 +239,8 @@
 			
 			#common-container li img {
 				width: 100%;
+				width: 100%;
+				max-height: 390px;
 			}
 			
 			.text-conter {
@@ -260,7 +262,24 @@
 				padding: 0 30px 15px;
 			}
 			
+			.slide-boxs {
+				padding: 0 30px;
+				width: calc(100% - 60px);
+				float: left;
+				display: -webkit-box;
+				overflow-x: scroll;
+				-webkit-overflow-scrolling: touch;
+			}
+			
 			@media screen and (max-width: 600px) {
+				#common-container li img {
+					max-height: 100px;
+				}
+
+				.slide-boxs {
+					padding: 0 10px;
+					width: calc(100% - 20px);
+				}
 				.center {
 					font-size: 15px;
 					line-height: 40px;
@@ -305,7 +324,7 @@
 				#common-container {
 					width: calc(100% - 10px);
 					padding: 0 5px;
-					height: 120px;
+					height: 130px;
 				}
 				.layui-tab-bar {
 					width: 30px;
@@ -323,7 +342,7 @@
 					font-size: 12px;
 				}
 				#common-container li {
-					height: 100px;
+					height: 130px;
 				}
 				body {
 					height: auto;
@@ -365,7 +384,7 @@
 			</div>
 
 			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-				<div class="slide-box" style="padding: 0 30px;width: calc(100% - 60px);">
+				<div class=" slide-boxs">
 					<div class="slide-item" data-type="1" v-for="(item,index) in navigation.typeList" v-if="index==0" :data-id="item.id" v-text="item.groupName">
 					</div>
 					<div class="slide-item" data-type="1" v-else :data-id="item.id" v-text="item.groupName"></div>
@@ -408,10 +427,10 @@
 					<div class="layui-tab-item layui-show">
 						<ul id="common-container" v-for="group in movieGroups">
 							<li v-for="item in group">
-									<a :href="'particulars.html?id=' + item.fId">
-										<img :src="item.movieLogo" alt="">
-										<p class="p-text" v-text="item.movieName"></p>
-									</a>
+								<a :href="'particulars.html?id=' + item.fId">
+									<img :src="item.movieLogo" alt="">
+									<p class="p-text" v-text="item.movieName"></p>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -443,7 +462,7 @@
 						});
 					},
 
-					getMovieList: function(url) {					
+					getMovieList: function(url) {
 						let that = this;
 						$.ajax({
 							type: "get",
@@ -463,7 +482,7 @@
 							let url = "";
 							if(num == '1') {
 								let categoryId = $(this).attr('categoryId');
-								url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=";	
+								url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=";
 							} else {
 								var sortValue = $(this).attr("data-sortValue");
 								var categoryId = $(this).attr("categoryId") //3和2一样	
@@ -544,10 +563,10 @@
 						let groups = new Array();
 						let len = this.movieList.length;
 
-						for (let i = 0; i < len; i++) {
+						for(let i = 0; i < len; i++) {
 							let j = Math.floor(i / 4);
 							let k = i % 4;
-							if (k == 0) {
+							if(k == 0) {
 								groups[j] = new Array();
 							}
 							groups[j][k] = this.movieList[i];
