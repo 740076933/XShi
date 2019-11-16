@@ -378,7 +378,7 @@
 			<div class="text-conter">
 				<p class="layui-search">
 					<span class="iconfont icon-dizhi"></span>
-					<template v-text="navigation.merc_address"></template>
+					<span v-text="navigation.merc_address"></span>
 				</p>
 				<label class="layui-lable"><span class="iconfont icon-contact"></span></label>
 			</div>
@@ -484,10 +484,10 @@
 								let categoryId = $(this).attr('categoryId');
 								url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=" + categoryId + "&movieName=";
 							} else {
-								var sortValue = $(this).attr("data-sortValue");
-								var categoryId = $(this).attr("categoryId") //3和2一样	
-								var categoryName = $(this).attr("data-categoryName");
-								let url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue;
+								let sortValue = $(this).attr("data-sortValue");
+								let categoryId = $(this).attr("categoryId") //3和2一样	
+								let categoryName = $(this).attr("data-categoryName");
+								url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&categoryId=" + categoryId + "&year=" + categoryName + "&sortType=" + sortValue;
 							}
 							that.getMovieList(url);
 						})
