@@ -199,7 +199,7 @@
 				border-radius: 5px;
 			}
 			
-			.this {
+			.slide-selected-item {
 				background: #F7CC46;
 				color: white;
 				border-radius: 4px;
@@ -215,14 +215,14 @@
 				width: 100%;
 			}
 			
-			#ul {
+			#common-container {
 				/*display: flex;*/
 				width: calc(100% - 60px);
 				padding: 0 30px 10px;
 				height: 370px;
 			}
 			
-			#ul li {
+			#common-container li {
 				/*flex: 1;*/
 				width: 20%;
 				float: left;
@@ -233,11 +233,7 @@
 				white-space: nowrap;
 			}
 			
-			#ul li:first-child {
-				/*margin: 0;*/
-			}
-			
-			#ul li img {
+			#common-container li img {
 				width: 100%;
 			}
 			
@@ -302,7 +298,7 @@
 					height: 30px;
 					line-height: 30px;
 				}
-				#ul {
+				#common-container {
 					width: calc(100% - 10px);
 					padding: 0 5px;
 					height: 120px;
@@ -322,7 +318,7 @@
 				.tltle-evaluate {
 					font-size: 12px;
 				}
-				#ul li {
+				#common-container li {
 					height: 100px;
 				}
 				body {
@@ -345,9 +341,8 @@
 				</div>
 				<span class="tltle-span" v-text="navigation.merc_name"></span>
 				<span class="tltle-evaluate">评价 &nbsp;> </span>
-
 			</div>
-			<!-- Swiper -->
+
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" v-for="item in navigation.merc_image.mercImage">
@@ -356,31 +351,35 @@
 				</div>
 				<div class="swiper-pagination"></div>
 			</div>
+
 			<div class="text-conter">
 				<p class="layui-search">
 					<span class="iconfont icon-dizhi"></span> <template v-text="navigation.merc_address"></template>
 				</p>
 				<label class="layui-lable"><span class="iconfont icon-contact"></span></label>
 			</div>
-			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
 
+			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
 				<div class="slide-box" style="padding: 0 30px;">
-					<template v-for="(item,index) in navigation.typeList" v-if="index==0">
-						<div class="slide-item" data-type="1" :data-id="item.id" v-text="item.groupName"></div>
-					</template>
-					<template v-else>
-						<div class="slide-item" data-type="1" :data-id="item.id" v-text="item.groupName"></div>
-					</template>
+						<div class="slide-item" 
+								data-type="1"
+								v-for="(item,index) in navigation.typeList"
+								v-if="index==0"
+								:data-id="item.id"
+								v-text="item.groupName">
+							</div>
+						<div class="slide-item" data-type="1" v-else :data-id="item.id" v-text="item.groupName"></div>
 				</div>
+
 				<div class="text-conters">
 					<p class="layui-search">
 						<span class="iconfont icon-sousuo"></span>
 						<input type="search" name="" id="" class="layui-inputs" placeholder="请输入查找的电影" />
 					</p>
-					<!--筛选-->
 					<label class="layui-lable slide"><span class="iconfont icon-iconfontzhizuobiaozhun023125"></span></label>
+
 					<div class="slide-box">
-						<div class="slide-item this"
+						<div class="slide-item slide-selected-item"
 								v-for="(item,index) in navigation.sortList" 
 								v-if="index==0" 
 								data-type="2" 
@@ -391,7 +390,7 @@
 					</div>
 
 					<div class="slide-box">
-						<div class="slide-item this" 
+						<div class="slide-item slide-selected-item" 
 								v-for="(item,index) in navigation.categoryList" 
 								v-if="index==0" 
 								:data-categoryId="item.categoryId"
@@ -405,7 +404,7 @@
 					</div>
 
 					<div class="slide-box">
-						<div class="slide-item this"
+						<div class="slide-item slide-selected-item"
 								v-for="(item,index) in navigation.countryList"
 								v-if="index==0"
 								:data-categoryId="item.categoryId"
@@ -415,7 +414,7 @@
 					</div>
 
 					<div class="slide-box">
-						<div class="slide-item this" 
+						<div class="slide-item slide-selected-item" 
 								v-for="(item,index) in navigation.yearList" 
 								v-if="index==0"
 								:data-categoryName="item.categoryName"
@@ -427,19 +426,17 @@
 
 				<div class="layui-tab-content" style="height: 100px;">
 					<div class="layui-tab-item layui-show">
-						<ul v-for="item in movieList">
-							<li>
+						<ul id="common-container">
+							<li v-for="item in movieList">
 								<img :src="item.movieLogo" alt="">
 								<p class="p-text" v-text="item.movieName"></p>
 							</li>
 						</ul>
 					</div>
-
 				</div>
 			</div>
 		</div>
-		</div>
-		<!-- Swiper JS -->
+
 		<script src="https://www.layuicdn.com/layui-v2.2.5/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js" type="text/javascript" charset="utf-8"></script>
@@ -477,7 +474,7 @@
 						});
 					},
 
-					switchType: function() {
+					filter: function() {
 						let that = this;
 							$('.slide-item').click(function() {
 								var num = $(this).attr("data-type");
@@ -550,8 +547,8 @@
 							});
 							$('.slide-item').each(function() {
 								$(this).click(function() {
-									$(this).addClass("this");
-									$(this).siblings().removeClass("this")
+									$(this).addClass('slide-selected-item');
+									$(this).siblings().removeClass('slide-selected-item');
 								})
 							})
 						});
@@ -564,10 +561,10 @@
 				},
 
 				mounted: function() {
-					this.slide();
-					this.swipe();
 					this.layInit();
-					this.switchType()
+					this.swipe();
+					this.slide();
+					this.filter();	
 				}
 			})
 		</script>
