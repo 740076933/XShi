@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -488,16 +487,15 @@
 					},
 					listenScroll: function() {
 						var that = this;
-						page = that.page
 						$(window).scroll(function() {
 							if($(document).scrollTop() <= 0) {
 								console.log("滚动条已经到达顶部为0");
 							}
 							if($(document).scrollTop() >= $(document).height() - $(window).height()) {
-								page++
-								console.log(page)
+								that.page = that.page + 1;
+								console.log(that.page)
 								console.log("滚动条已经到达底部为" + $(document).scrollTop());
-								that.movieList = that.movieList.concat(that.getMovieList("https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=" + page + "&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=0&movieName="));
+								that.movieList = that.movieList.concat(that.getMovieList("https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=" + that.page + "&pageSize=12&mercId=925336436335575040&searchType=01&categoryId=0&movieName="));
 							}
 						});
 					},
@@ -518,6 +516,7 @@
 								let categoryName= $(".slide-box").eq(3).find(".slide-selected-item").attr("data-categoryName");
 								url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=02&country=" + categoryId + "&categoryId=" + categoryid + "&year=" + categoryName + "&sortType=" + sortKey;
 							}
+							that.page = 1;
 							that.movieList = that.getMovieList(url);
 						})
 					},
@@ -611,30 +610,10 @@
 				},
 				watch: {
 					question: function() {
-						var id=$(".slide-boxs").children(".zindex").attr("data-id")
-						var html=''
-						$.ajax({
-							type: "get",
-							async: false,
-							url: "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId="+id+"&movieName=" + this.question,
-							success: function(res) {
-								for (var i=0;i<res.data.movieList.length;i++) {
-									if(i % 4  == 0) {
-										html += '<ul id="common-container">'
-									}
-										html += '<li>'+
-													'<a href="particulars.html?id='+res.data.movieList[i].fId+'">'+
-														'<img src="'+res.data.movieList[i].movieLogo+'" alt="">'+
-														'<p class="p-text">'+res.data.movieList[i].movieName+'</p>'+
-													'</a>'+
-												'</li>'
-									if(i % 4  == 3 || i == res.data.movieList.length - 1) {
-										html += '</ul>'
-									}
-								}
-								$(".layui-show").html(html)
-							}
-						});
+						var id=$(".slide-boxs").children(".zindex").attr("data-id");
+						url = "https://svrstg.xiaoniaoguanying.com/hmVodSvr/movieTheater/v3_scanCodeSelectMovie?pageIndex=1&pageSize=12&mercId=925336436335575040&searchType=01&categoryId="+id+"&movieName=" + this.question;
+						this.page = 1;
+						this.movieList = this.getMovieList(url);
 					}
 				}
 			})
